@@ -11,7 +11,3 @@ public class HelloActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hello);
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> c49403f76be08493cbaf4e196a383fa03afd5a6e
