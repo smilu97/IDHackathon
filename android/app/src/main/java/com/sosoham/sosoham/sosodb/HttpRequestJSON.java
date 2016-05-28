@@ -22,7 +22,7 @@ public class HttpRequestJSON {
             @Override
             public void run() {
                 try {
-                    String url_address = URL_PREFIX + method;
+                    String url_address = URL_PREFIX + "method";
                     HttpURLConnection conn = null;
                     OutputStream os = null;
                     InputStream is = null;

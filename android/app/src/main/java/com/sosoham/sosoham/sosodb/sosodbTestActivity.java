@@ -15,12 +15,10 @@ public class sosodbTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sosodb_test);
         try {
-            JSONObject jobj = new JSONObject("{\"test_key\":123}");
-            HttpRequestJSON hrj = new HttpRequestJSON();
-            hrj.sendPost("test", jobj, new HttpRequestJSON.HttpRequestJSONListener() {
+            FaceBook.loginFB(new FaceBook.FaceBookListener() {
                 @Override
-                public void onRequestResult(JSONObject jsonObject) {
-                    Log.d("onResult", jsonObject.toString());
+                public void onAfterLogin() {
+
                 }
             });
         }catch(Exception e){
