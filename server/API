@@ -12,49 +12,49 @@ give_hope : 소망을 이루어줌
 
 ==============================
 
-SOSODB sosodb = new SOSODB(Context co);
-send_get(JsonObject jobj);
+SOSODB sosodb = new SOSODB();
+get(JsonObject jobj, new SOSODBListener );
 {
-    "my_id" : "56782882123",
-    "method" : "get_friends_list",
-    "target_id" : "12312123123",
-    "hope_id" : "12"
+        "my_id" : "56782882123",
+        "method" : "get_friends_list",
+        "target_id" : "12312123123",
+        "hope_id" : 12
 }
 
 receive
 {
-    “target_id” : “484772728823”,
-    “friends_list” : [ 
+        “target_id” : “484772728823”,
+        “friends_list” : [ 
 {
-    “friend_id” : “115135351153”, 
+“friend_id” : “115135351153”, 
 “friend_name” : “hong gi”,
 }
 ...
 ],
-“hope_list” : [
-{
-    “hope_whose” : “kim gun”,
-    “hope_whose_id” : “755757575755”,
-    “hope_satisfied_by” : “hong im”,
-    “hope_satisfied_by_id” : “4747477474”,
-    “hope_id” : “12”,
-    “hope_upload_time” : “2014.12.25:15:10:33”,
-    “hope_satisfied_time” : “2014.12.25:49:44:44”
-    “gift_name” : “notebook”,
-    “gift_content” : “please give me [http://image.jpg]“,
-    “action_list” : [
-        {
-            “action_whose_id” : “584484848448”,
-            “action_whose_name” : “hong gil dong”,
-            “action_type” : “12”
-}...
+        “hope_list” : [
+                {
+                        “hope_whose” : “kim gun”,
+                        “hope_whose_id” : “755757575755”,
+                        “hope_satisfied_by” : “hong im”,
+                        “hope_satisfied_by_id” : “4747477474”,
+                        “hope_id” : 12,
+                        “hope_upload_time” : “2014.12.25:15:10:33”,
+                        “hope_satisfied_time” : “2014.12.25:49:44:44”
+                        “gift_name” : “notebook”,
+                        “gift_content” : “please give me [http://image.jpg]“,
+                        “action_list” : [
+                                {
+                                        “action_whose_id” : “584484848448”,
+                                        “action_whose_name” : “hong gil dong”,
+                                        “action_type” : 12
+                                }...
 ]
-},
-...
-]
+                },
+                ...
+        ]
 }
 
-send_add(JsonObject jobj);
+add(JsonObject jobj, new SOSODBListener );
 {
         "my_id" : "562728292123",
         "method" : "add_hope",
@@ -64,38 +64,34 @@ send_add(JsonObject jobj);
 
 receive
 {
-    “hope_whose” : “kim gun”,
-    “hope_whose_id” : “755757575755”,
-    “hope_satisfied_by” : “hong im”,
-    “hope_satisfied_by_id” : “4747477474”,
-    “hope_id” : “12”,
-    “hope_upload_time” : “2014.12.25:15:10:33”,
-    “hope_satisfied_time” : “2014.12.25:49:44:44”
-    “gift_name” : “notebook”,
-    “gift_content” : “please give me [http://image.jpg]“,
-    “action_list” : [
-    {
-“action_whose_id” : “584484848448”,
-“action_whose_name” : “hong gil dong”,
-“action_type” : “12”
-}...
+        “hope_whose” : “kim gun”,
+        “hope_whose_id” : “755757575755”,
+        “hope_satisfied_by” : “hong im”,
+        “hope_satisfied_by_id” : “4747477474”,
+        “hope_id” : 12,
+        “hope_upload_time” : “2014.12.25:15:10:33”,
+        “hope_satisfied_time” : “2014.12.25:49:44:44”
+        “gift_name” : “notebook”,
+        “gift_content” : “please give me [http://image.jpg]“,
+        “action_list” : [
+                {
+                        “action_whose_id” : “584484848448”,
+                        “action_whose_name” : “hong gil dong”,
+                        “action_type” : 12
+                }...
 ]
 }
 
-send_give(JsonObject jobj);
+give(JsonObject jobj, new SOSODBListener );
 {
         "my_id" : "561923912939",
         "method" : "give_action",
-        "hope_id" : "12",
-        "action_type" : "1",
+        "hope_id" : 12,
+        "action_type" : 1,
 }
 
 receive
 {
-    없음
+        없음
 }
 
-        }
-        ]
-}]
-}
