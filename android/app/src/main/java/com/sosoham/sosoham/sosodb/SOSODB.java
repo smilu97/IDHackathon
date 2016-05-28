@@ -12,15 +12,15 @@ public class SOSODB {
         return res;
     }
 
-    public void get(final String req_obj, final SOSODBListener sosodbListener){
+    public void get(final JSONObject req_obj, final SOSODBListener sosodbListener){
         sosodbListener.onRequestResult(new JSONObject());
     }
 
-    public void add(final String req_obj, final SOSODBListener sosodbListener){
+    public void add(final JSONObject req_obj, final SOSODBListener sosodbListener){
         sosodbListener.onRequestResult(new JSONObject());
     }
 
-    public void give(final String req_obj, final SOSODBListener sosodbListener){
+    public void give(final JSONObject req_obj, final SOSODBListener sosodbListener){
         sosodbListener.onRequestResult(new JSONObject());
     }
 
