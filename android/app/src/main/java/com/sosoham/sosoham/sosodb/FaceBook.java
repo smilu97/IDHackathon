@@ -14,7 +14,7 @@ public class FaceBook {
     public static String my_friend_ids = "2,3,4,5";
     public static String my_friend_names = "a,b,c,d";
 
-    public static void loginFB(FaceBookListener fbl){
+    public static void loginFB(final FaceBookListener fbl){
 
         try {
             JSONObject jsonObject = new JSONObject();
@@ -27,14 +27,12 @@ public class FaceBook {
             sosodb.add(jsonObject, new SOSODB.SOSODBListener() {
                 @Override
                 public void onRequestResult(JSONObject jobj) {
-
+                    fbl.onAfterLogin();
                 }
             });
         }catch (Exception e){
             Log.d("FB", e.toString());
         }
-
-
     }
 
     public interface FaceBookListener{

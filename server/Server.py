@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 import json
 import sqlite3 as sql
+import time, datetime
 app = Flask(__name__)
 
 @app.route('/test', methods = ["POST"])
@@ -9,7 +10,6 @@ def test():
     content = request.get_json(silent=True)
     print content
     return '{"test":"success"}'
-
 
 @app.route('/method', methods= ["POST"])
 def method():
@@ -23,28 +23,59 @@ def method():
     try:
         print "Opened database successfully";
         if mth == 'get_main_hope':
-            cursor = conn.execute("SELECT fb_friends from USER where fb_id='"+my_id+"'")
-            friend_list = cursor[0][0].split(",")
             res['hope_list'] = []
+            print "myid : " + my_id
+            cursor = conn.execute("SELECT fb_friends from USER where fb_id = "+my_id)
+            friend_list = cursor.fetchall()[0][0].split(",")
+            print friend_list
             for friend_id in friend_list:
-                cursor = conn.execute("SELECT * from HOPE where hope_whose_fb_id='"+friend_id+"'")
+                cursor = conn.execute("SELECT * from HOPE where hope_whose_fb_id = "+friend_id)
                 for row in cursor:
+                    print str(row)
                     one_hope = {}
                     one_hope['hope_id'] = row[0]
-                    one_hope['hope_whose'] = row[1]
-                    one_hope['hope_whose_id'] = row[2]
-                    one_hope['hope_satisfied_by'] = row[3]
-                    one_hope['hope_satisfied_by_id'] = row[4]
-                    one_hope['hope_upload_time'] = row[5]
-                    one_hope['hope_satisfied_time'] = row[6]
-                    one_hope['gift_name'] = row[7]
-                    one_hope['gift_content'] = row[8]
+                    one_hope['hope_whose_id'] = row[1]
+                    one_hope['hope_satisfied_by_id'] = row[2]
+                    one_hope['hope_upload_time'] = row[3]
+                    one_hope['hope_satisfied_time'] = row[4]
+                    one_hope['gift_name'] = row[5]
+                    one_hope['gift_content'] = row[6]
                     res['hope_list'].append(one_hope)
-            pass
         if mth == 'get_target_hope':
-            pass
+            res['hope_list'] = []
+            cursor = conn.execute("SELECT * from HOPE where hope_whose_fb_id like "+content["target_id"])
+            for row in cursor:
+                one_hope = {}
+                one_hope['hope_id'] = row[0]
+                one_hope['hope_whose_id'] = row[1]
+                one_hope['hope_satisfied_by_id'] = row[2]
+                one_hope['hope_upload_time'] = row[3]
+                one_hope['hope_satisfied_time'] = row[4]
+                one_hope['gift_name'] = row[5]
+                one_hope['gift_content'] = row[6]
+                res['hope_list'].append(one_hope)
         if mth == 'get_detail_hope':
-            pass
+            res['hope_list'] = []
+            cursor = conn.execute("SELECT * from HOPE where hope_uq_id like "+content["hope_id"])
+            for row in cursor:
+                print str(row)
+                one_hope = {}
+                one_hope['hope_id'] = row[0]
+                one_hope['hope_whose_id'] = row[1]
+                one_hope['hope_satisfied_by_id'] = row[2]
+                one_hope['hope_upload_time'] = row[3]
+                one_hope['hope_satisfied_time'] = row[4]
+                one_hope['gift_name'] = row[5]
+                one_hope['gift_content'] = row[6]
+                one_hope['action_list'] = []
+                cur = conn.execute("SELECT * from ACTION where action_hope_id like "+content["hope_id"])
+                for ac in cur:
+                    one_ac = {}
+                    one_ac['action_whose_id'] = ac[3]
+                    one_ac['action_whose_name'] = ac[3]
+                    one_ac['action_type'] = ac[1]
+                    one_hope['action_list'].append(one_ac)
+                res['hope_list'].append(one_hope)
         if mth == 'add_user':
             cur = conn.cursor()
             cur.execute('INSERT INTO USER (fb_id, fb_friends, fb_name) VALUES (?,?,?)', \
@@ -54,9 +85,11 @@ def method():
             cur = conn.cursor()
             ts = time.time()
             st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d:%H:%M:%S')
+            print st
             cur.execute('INSERT INTO HOPE (hope_whose_fb_id, hope_satisfied_by_fb_id, hope_upload_time, hope_satisfied_time, gift_name, gift_content) VALUES (?,?,?,?,?,?)', \
                 (my_id, -1, st, '', content['gift_name'], content['gift_content']))
             newid = cur.lastrowid
+            conn.commit()
             cur.execute('SELECT fb_name FROM USER where user_uq_id like %s' % my_id)
             hopeWhose = cur.fetchall()[0]
             res['hope_whose'] = hopeWhose
@@ -69,7 +102,6 @@ def method():
             res['gift_name'] = content['gift_name']
             res['gift_content'] = content['gift_content']
             res['action_list'] = []
-            conn.commit()
         if mth == 'give_action':
             cur = conn.cursor()
             cur.execute('SELECT hope_whose_fb_id FROM HOPE where hope_uq_id like %s' % content['hope_id'])
@@ -89,6 +121,8 @@ def method():
         conn.rollback()
     finally:
         conn.close()
+        print "result!!"
+        print res
         return json.dumps(res)
 
 if __name__ == '__main__':

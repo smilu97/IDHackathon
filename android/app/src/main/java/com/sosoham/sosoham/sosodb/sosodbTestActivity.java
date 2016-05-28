@@ -24,5 +24,21 @@ public class sosodbTestActivity extends AppCompatActivity {
         }catch(Exception e){
             Log.d("onCreate", e.toString());
         }
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("my_id", "1");
+            jsonObject.put("method","get_main_hope");
+            Log.d("json", jsonObject.toString());
+            SOSODB sosodb = new SOSODB();
+            sosodb.add(jsonObject, new SOSODB.SOSODBListener() {
+                @Override
+                public void onRequestResult(JSONObject jobj) {
+
+                }
+            });
+        }catch (Exception e){
+            Log.d("JSON", e.toString());
+        }
     }
 }
