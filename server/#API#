@@ -1,0 +1,102 @@
+===== method list ===============
+
+get_friends_list  : 친구 목록 가져옴
+get_main_hope : 메인 페이지 소망 리스트 가져옴
+get_target_hope : 타겟 페이지 소망 리스트 가져옴
+
+get_detail_hope : 디테일 페이지 소망 정보 가져옴
+
+add_hope : 소망 작성을 새로 넣음
+
+give_action : 소망에 리액션 해줌
+give_hope : 소망을 이루어줌
+
+==============================
+
+SOSODB sosodb = new SOSODB(Context co);
+send_get(JsonObject jobj);
+{
+    "my_id" : "56782882123",
+    "method" : "get_friends_list",
+    "target_id" : "12312123123",
+    "hope_id" : "12"
+}
+
+receive
+{
+    “target_id” : “484772728823”,
+    “friends_list” : [ 
+{
+    “friend_id” : “115135351153”, 
+“friend_name” : “hong gi”,
+}
+...
+],
+“hope_list” : [
+{
+    “hope_whose” : “kim gun”,
+    “hope_whose_id” : “755757575755”,
+    “hope_satisfied_by” : “hong im”,
+    “hope_satisfied_by_id” : “4747477474”,
+    “hope_id” : “12”,
+    “hope_upload_time” : “2014.12.25:15:10:33”,
+    “hope_satisfied_time” : “2014.12.25:49:44:44”
+    “gift_name” : “notebook”,
+    “gift_content” : “please give me [http://image.jpg]“,
+    “action_list” : [
+        {
+            “action_whose_id” : “584484848448”,
+            “action_whose_name” : “hong gil dong”,
+            “action_type” : “12”
+}...
+]
+},
+...
+]
+}
+
+send_add(JsonObject jobj);
+{
+        "my_id" : "562728292123",
+        "method" : "add_hope",
+        "gift_name" : "notebook",
+        "gift_content" : "please give me"
+}
+
+receive
+{
+    “hope_whose” : “kim gun”,
+    “hope_whose_id” : “755757575755”,
+    “hope_satisfied_by” : “hong im”,
+    “hope_satisfied_by_id” : “4747477474”,
+    “hope_id” : “12”,
+    “hope_upload_time” : “2014.12.25:15:10:33”,
+    “hope_satisfied_time” : “2014.12.25:49:44:44”
+    “gift_name” : “notebook”,
+    “gift_content” : “please give me [http://image.jpg]“,
+    “action_list” : [
+    {
+“action_whose_id” : “584484848448”,
+“action_whose_name” : “hong gil dong”,
+“action_type” : “12”
+}...
+]
+}
+
+send_give(JsonObject jobj);
+{
+        "my_id" : "561923912939",
+        "method" : "give_action",
+        "hope_id" : "12",
+        "action_type" : "1",
+}
+
+receive
+{
+    없음
+}
+
+        }
+        ]
+}]
+}
