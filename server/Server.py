@@ -48,7 +48,7 @@ def method():
         if mth == 'add_user':
             cur = conn.cursor()
             cur.execute('INSERT INTO USER (fb_id, fb_friends, fb_name) VALUES (?,?,?)', \
-                (my_id, content['my_friends'], content['my_name']))
+                (my_id, content['my_friend_list'], content['my_name']))
             conn.commit()
         if mth == 'add_hope':
             cur = conn.cursor()
