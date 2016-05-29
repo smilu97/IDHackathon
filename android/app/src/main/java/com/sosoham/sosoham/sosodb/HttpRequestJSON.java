@@ -15,7 +15,7 @@ import java.net.URL;
  */
 public class HttpRequestJSON {
 
-    String URL_PREFIX = "http://192.168.43.168:4000/";
+    String URL_PREFIX = "http://beaver.hp100.net:4000/";
 
     public void sendPost(final String method, final JSONObject jsonObject, final HttpRequestJSONListener hrjl){
         Thread th = new Thread(new Runnable() {
