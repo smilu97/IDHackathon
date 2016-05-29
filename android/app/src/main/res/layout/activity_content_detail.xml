@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+<<<<<<< HEAD
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sosoham.sosoham.ContentDetailActivity"
     android:background="@drawable/main_soso_05">
+=======
+    tools:context="com.sosoham.sosoham.ContentDetailActivity">
+>>>>>>> de233c1ed0ff9cd2c376f96ce2a668805990b764
 
     <TextView
         android:layout_width="wrap_content"

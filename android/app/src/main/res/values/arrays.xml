@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="mic_volume_meter_res">
+        <item>@drawable/main_soso_01_background</item>
+        <item>@drawable/main_soso_02_background</item>
+        <item>@drawable/main_soso_03_background</item>
+        <item>@drawable/main_soso_04_background</item>
+        <item>@drawable/main_soso_05_background</item>
+        <item>@drawable/main_soso_06</item>
+        <item>@drawable/main_soso_07</item>
+    </array>
+</resources>
