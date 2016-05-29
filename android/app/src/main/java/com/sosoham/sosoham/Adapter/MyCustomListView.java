@@ -54,7 +54,7 @@ public class MyCustomListView extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.array_list, parent, false);
 			holder = new ViewHolder();
 			holder.mains = (CardView) convertView.findViewById(R.id.card_view);
-			holder.mname = (TextView) convertView.findViewById(R.id.textView1);
+			//holder.mname = (TextView) convertView.findViewById(R.id.textView1);
 			holder.mcontent = (TextView) convertView.findViewById(R.id.textView2);
 
 			convertView.setTag(holder);

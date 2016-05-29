@@ -8,15 +8,12 @@ import android.util.Log;
 import com.sosoham.sosoham.Activity.HelloActivity;
 import com.sosoham.sosoham.sosodb.FaceBook;
 
-/**
- * Created by mac on 2016. 5. 29..
- */
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sosodb_test);
+        setContentView(R.layout.activity_main);
         try {
             FaceBook.loginFB(new FaceBook.FaceBookListener() {
                 @Override
@@ -28,5 +25,7 @@ public class MainActivity extends AppCompatActivity {
         }catch(Exception e){
             Log.d("onCreate", e.toString());
         }
+
+
     }
 }

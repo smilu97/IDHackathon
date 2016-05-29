@@ -7,8 +7,10 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.sosoham.sosoham.Adapter.MyCustomListView;
 import com.sosoham.sosoham.R;
 import com.sosoham.sosoham.Vo.HopeVo;
+import com.sosoham.sosoham.sosodb.FaceBook;
 import com.sosoham.sosoham.sosodb.SOSODB;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class HelloActivity extends Activity {
 
     SwipeFlingAdapterView flingContainer;
     MyCustomListView adapter;
-
+    ArrayList<HopeVo> alist = new ArrayList<HopeVo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +37,35 @@ public class HelloActivity extends Activity {
                 //startActivity(intent);
             }
         });*/
+        SOSODB sosodb = new SOSODB();
+        JSONObject Jobject = new JSONObject( );
 
+        try {
+            Jobject.put("my_id", FaceBook.my_id);
+            Jobject.put("method","get_main_hope");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        final ArrayList<HopeVo> alist = new ArrayList<HopeVo>();
-        HopeVo a = new HopeVo("a","a","a","a","a","a","a","쏀치한 오늘 ㅠㅠ","오늘 저녁은 치킨 먹고 싶어요!!");
-        HopeVo b = new HopeVo("b","b","b","b","b","b","b","b","b");
-        alist.add(a);
-        alist.add(b);
+        sosodb.get(Jobject, new SOSODB.SOSODBListener() {
+            String uid;
+            String ucontent;
+
+            @Override
+            public void onRequestResult(JSONObject jobj) {
+                try {
+                    for(int i=0; i<jobj.length();i++){
+                        uid=jobj.getString("hope_id");
+                        ucontent = jobj.getString("gift_content");
+                        alist.add(new HopeVo(uid,"a","a","a","a","a","a","쏀치한 오늘 ㅠㅠ",ucontent));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         adapter = new MyCustomListView(this,alist);
         //writebtn.OnClickListener(
         flingContainer.setAdapter(adapter);
@@ -90,13 +114,7 @@ public class HelloActivity extends Activity {
         });
 
 
-        SOSODB sosodb = new SOSODB();
-        sosodb.get(new JSONObject(), new SOSODB.SOSODBListener() {
-            @Override
-            public void onRequestResult(JSONObject jobj) {
 
-            }
-        });
 
 
 
