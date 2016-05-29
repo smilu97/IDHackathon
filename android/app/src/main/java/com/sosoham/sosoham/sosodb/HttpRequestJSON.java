@@ -15,14 +15,14 @@ import java.net.URL;
  */
 public class HttpRequestJSON {
 
-    String URL_PREFIX = "http://10.11.1.123/";
+    String URL_PREFIX = "http://192.168.43.168:4000/";
 
     public void sendPost(final String method, final JSONObject jsonObject, final HttpRequestJSONListener hrjl){
         Thread th = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    String url_address = URL_PREFIX + method;
+                    String url_address = URL_PREFIX + "method";
                     HttpURLConnection conn = null;
                     OutputStream os = null;
                     InputStream is = null;
