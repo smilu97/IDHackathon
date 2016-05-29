@@ -15,7 +15,6 @@ public class FaceBook {
     public static String my_friend_names = "a,b,c,d";
 
     public static void loginFB(final FaceBookListener fbl){
-
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("my_id", my_id);
@@ -33,6 +32,17 @@ public class FaceBook {
         }catch (Exception e){
             Log.d("FB", e.toString());
         }
+    }
+
+    public static String getFBname(String id){
+        String[] mfl = my_friend_ids.split(",");
+        String[] mln = my_friend_names.split(",");
+        for(int i = 0 ; i < mfl.length ; i++){
+            if(mfl[i].equals(id)){
+                return mln[i];
+            }
+        }
+        return null;
     }
 
     public interface FaceBookListener{

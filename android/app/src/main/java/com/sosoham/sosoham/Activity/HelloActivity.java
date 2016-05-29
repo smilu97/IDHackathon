@@ -54,6 +54,9 @@ public class HelloActivity extends Activity {
             @Override
             public void onRequestResult(JSONObject jobj) {
                 try {
+
+                    Log.d("result", jobj.toString());
+
                     for(int i=0; i<jobj.length();i++){
                         uid=jobj.getString("hope_id");
                         ucontent = jobj.getString("gift_content");
