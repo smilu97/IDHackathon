@@ -2,7 +2,9 @@ package com.sosoham.sosoham.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.sosoham.sosoham.ContentSubmitActivity;
 import com.sosoham.sosoham.R;
 import com.sosoham.sosoham.Vo.HopeVo;
 
@@ -47,14 +50,14 @@ public class MyCustomListView extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		int pos = (int) (Math.random() * hopevo.size());
+		final int pos = (int) (Math.random() * hopevo.size());
 		ViewHolder holder;
 
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.array_list, parent, false);
 			holder = new ViewHolder();
 			holder.mains = (CardView) convertView.findViewById(R.id.card_view);
-			//holder.mname = (TextView) convertView.findViewById(R.id.textView1);
+			holder.btn = (android.support.design.widget.FloatingActionButton) convertView.findViewById(R.id.fab);
 			holder.mcontent = (TextView) convertView.findViewById(R.id.textView2);
 
 			convertView.setTag(holder);
@@ -63,11 +66,15 @@ public class MyCustomListView extends BaseAdapter {
 		}
 		random = (int) (Math.random() * testArrayIcon.length());
 		int drawableID = testArrayIcon.getResourceId(random, -1);
+		holder.btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(m_activity, ContentSubmitActivity.class);
+				m_activity.startActivity(i);
+			}
+		});
 		if(hopevo.get(pos)!=null) {
-			//holder.mains.setBackgroundResource(drawableID);
 
-
-			holder.mname.setText(hopevo.get((getCount() - pos - 1)).GIFT_TITLE);
 			holder.mcontent.setText(hopevo.get((getCount() - pos - 1)).GIFT_CONTENT);
 			holder.mains.setBackgroundResource(drawableID);
 		}else {
@@ -78,7 +85,7 @@ public class MyCustomListView extends BaseAdapter {
 
 	private static class ViewHolder {
 		CardView mains;
-		TextView mname;
+		public FloatingActionButton btn;
 		TextView mcontent;
 		public int position;
 	}

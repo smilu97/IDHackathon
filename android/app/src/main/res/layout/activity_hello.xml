@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/frame"
-    app:rotation_degrees="16"
+    app:rotation_degrees="10"
     app:max_visible="2"
     app:min_adapter_stack="2"
     xmlns:android="http://schemas.android.com/apk/res/android" />

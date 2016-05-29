@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sosoham.sosoham.sosodb.FaceBook;
@@ -31,7 +30,15 @@ public class ContentSubmitActivity extends AppCompatActivity {
         // myId = intent.getStringExtra("myId");
         myId = FaceBook.my_id;
         setContentView(R.layout.activity_content_submit);
-        ImageView subButton = (ImageView)findViewById(R.id.submitSubmitButton);
+        Button subButton = (Button)findViewById(R.id.submitSubmitButton);
+        Button canButton = (Button)findViewById(R.id.submit_cancel);
+
+        canButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
         findViewById(R.id.submitSubmitButton).setOnClickListener(submitListener);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -40,7 +47,7 @@ public class ContentSubmitActivity extends AppCompatActivity {
 
     Button.OnClickListener submitListener = new View.OnClickListener() {
         public void onClick(View v) {
-            TextView titleText = (TextView)findViewById(R.id.submitTitleText);
+           // TextView titleText = (TextView)findViewById(R.id.submitTitleText);
             TextView contentText = (TextView)findViewById(R.id.submitContentText);
             String contentString = contentText.getText().toString();
             //TODO : Upload db (fbId, contentString)
@@ -48,7 +55,7 @@ public class ContentSubmitActivity extends AppCompatActivity {
             try {
                 sendObj.put("my_id", myId);
                 sendObj.put("method", "add_hope");
-                sendObj.put("gift_name", titleText.getText());
+             //   sendObj.put("gift_name", titleText.getText());
                 sendObj.put("gift_content", contentText.getText());
             } catch (JSONException e) {
                 e.printStackTrace();
