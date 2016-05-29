@@ -3,8 +3,10 @@ package com.sosoham.sosoham;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,6 +48,7 @@ public class ContentDetailActivity extends AppCompatActivity {
                     {
                         try {
                             JSONObject order = actionList.getJSONObject(i);
+                            Log.d("action", order.getString("action_whose_name"));
                             String actionProfileUrl = order.getString("action_profile_url");
                             String actionName = order.getString("action_whose_name");
                             int actionType = order.getInt("action_type");
@@ -70,13 +73,11 @@ public class ContentDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_content_detail);
         Intent intent = getIntent();
         myId = intent.getStringExtra("myId");
-        Button aButton = (Button)findViewById(R.id.detailActionAButton);
-        Button bButton = (Button)findViewById(R.id.detailActionBButton);
-        Button cButton = (Button)findViewById(R.id.detailActionCButton);
-        Button purButton = (Button)findViewById(R.id.detailPurchaseButton);
+        ImageView aButton = (ImageView)findViewById(R.id.detailActionAButton);
+        ImageView bButton = (ImageView)findViewById(R.id.detailActionBButton);
+        ImageView purButton = (ImageView)findViewById(R.id.detailPurchaseButton);
         aButton.setOnClickListener(buttonListener);
         bButton.setOnClickListener(buttonListener);
-        cButton.setOnClickListener(buttonListener);
         purButton.setOnClickListener(buttonListener);
         postId = intent.getStringExtra("postId");
         UpdateList();
@@ -90,9 +91,6 @@ public class ContentDetailActivity extends AppCompatActivity {
                     break;
                 case R.id.detailActionBButton :
                     actionType = 2;
-                    break;
-                case R.id.detailActionCButton :
-                    actionType = 3;
                     break;
                 case R.id.detailPurchaseButton :
                     Intent tointent = new Intent(ContentDetailActivity.this, PurchaseActivity.class);

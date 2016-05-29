@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sosoham.sosoham.sosodb.FaceBook;
@@ -30,7 +31,7 @@ public class ContentSubmitActivity extends AppCompatActivity {
         // myId = intent.getStringExtra("myId");
         myId = FaceBook.my_id;
         setContentView(R.layout.activity_content_submit);
-        Button subButton = (Button)findViewById(R.id.submitSubmitButton);
+        ImageView subButton = (ImageView)findViewById(R.id.submitSubmitButton);
 
         findViewById(R.id.submitSubmitButton).setOnClickListener(submitListener);
         // ATTENTION: This was auto-generated to implement the App Indexing API.

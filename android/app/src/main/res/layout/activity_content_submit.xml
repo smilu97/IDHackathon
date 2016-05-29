@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.sosoham.sosoham.ContentSubmitActivity">
+    tools:context="com.sosoham.sosoham.ContentSubmitActivity"
+    android:background="@drawable/main_soso_07">
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,13 +31,12 @@
         android:layout_marginTop="48dp"
         android:layout_alignEnd="@+id/submitTitleText" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="submit"
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/submitSubmitButton"
+        android:src="@drawable/writing_btn_50"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="122dp" />
+        android:layout_alignEnd="@+id/submitContentText" />
 
 </RelativeLayout>

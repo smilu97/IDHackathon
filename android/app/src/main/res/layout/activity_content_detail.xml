@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.sosoham.sosoham.ContentDetailActivity">
+    tools:context="com.sosoham.sosoham.ContentDetailActivity"
+    android:background="@drawable/main_soso_05">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,44 +22,12 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:text="content"
         android:textSize="20dp"
         android:id="@+id/detailContextText"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/detailTitleText" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="purchase"
-        android:id="@+id/detailPurchaseButton"
-        android:layout_alignTop="@+id/detailActionCButton"
-        android:layout_alignEnd="@+id/detailContextText" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A"
-        android:id="@+id/detailActionAButton"
-        android:layout_below="@+id/detailContextText"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="B"
-        android:id="@+id/detailActionBButton"
-        android:layout_alignTop="@+id/detailActionAButton"
-        android:layout_toEndOf="@+id/detailActionAButton" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="C"
-        android:id="@+id/detailActionCButton"
-        android:layout_alignTop="@+id/detailActionBButton"
-        android:layout_toEndOf="@+id/detailActionBButton" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -68,5 +37,33 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/detailActionAButton"
+        android:layout_below="@+id/detailContextText"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/metoo"
+        android:clickable="true" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/detailActionBButton"
+        android:src="@drawable/sorry"
+        android:layout_marginStart="38dp"
+        android:layout_alignBottom="@+id/detailActionAButton"
+        android:clickable="true"
+        android:layout_toEndOf="@+id/detailActionAButton" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/detailPurchaseButton"
+        android:src="@drawable/present"
+        android:layout_below="@+id/detailContextText"
+        android:clickable="true"
+        android:layout_alignEnd="@+id/detailContextText" />
 
 </RelativeLayout>
