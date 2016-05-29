@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ContentDetailActivity extends AppCompatActivity {
-    public ArrayList<CommentListItem> commentDat;
+    public ArrayList<CommentListItem> commentDat = new ArrayList<>();
     public String postId;
     public String myId;
     public SOSODB sosodb = new SOSODB();

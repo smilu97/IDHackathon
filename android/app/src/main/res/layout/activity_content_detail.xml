@@ -7,7 +7,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sosoham.sosoham.ContentDetailActivity"
-    android:background="@drawable/main_soso_05"><TextView
+    android:background="@drawable/main_soso_05">
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="title"

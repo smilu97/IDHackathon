@@ -58,9 +58,11 @@ public class HelloActivity extends Activity {
                     Log.d("result", jobj.toString());
 
                     for(int i=0; i<jobj.length();i++){
-                        uid=jobj.getString("hope_id");
-                        ucontent = jobj.getString("gift_content");
-                        alist.add(new HopeVo(uid,"a","a","a","a","a","a","쏀치한 오늘 ㅠㅠ",ucontent));
+                        if(jobj.getString("hope_id") !=null ||jobj.getString("gift_content") != null) {
+                            uid = jobj.getString("hope_id");
+                            ucontent = jobj.getString("gift_content");
+                            alist.add(new HopeVo(uid, "a", "a", "a", "a", "a", "a", "쏀치한 오늘 ㅠㅠ", ucontent));
+                        }
                     }
 
                 } catch (JSONException e) {
