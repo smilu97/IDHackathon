@@ -19,12 +19,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ContentDetailActivity extends AppCompatActivity {
-    public ArrayList<CommentListItem> commentDat;
+    public ArrayList<CommentListItem> commentDat = new ArrayList<>();
     public String postId;
     public String myId;
     public SOSODB sosodb = new SOSODB();
 
     protected void UpdateList() {
+        commentDat.clear();
         JSONObject postJson = new JSONObject();
         try {
             postJson.put("my_id", myId);
@@ -43,6 +44,8 @@ public class ContentDetailActivity extends AppCompatActivity {
                     JSONObject hope = jobj.getJSONArray("hope_list").getJSONObject(0);
                     contentText.setText(hope.getString("gift_content"));
                     titleText.setText(hope.getString("gift_name"));
+                    contentText.postInvalidate();
+                    titleText.postInvalidate();
                     JSONArray actionList = hope.getJSONArray("action_list");
                     for(int i=0;i<actionList.length(); ++i)
                     {
@@ -58,11 +61,13 @@ public class ContentDetailActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }
                 CommentListAdapter commentAdapter = new CommentListAdapter(ContentDetailActivity.this, R.layout.comment, commentDat);
                 ListView commentList = (ListView)findViewById(R.id.CommentListView);
+                commentList.setAdapter(commentAdapter);
             }
         });
     }
