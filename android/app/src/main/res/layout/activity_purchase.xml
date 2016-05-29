@@ -5,13 +5,9 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-<<<<<<< HEAD
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sosoham.sosoham.PurchaseActivity"
     android:background="@drawable/main_soso_04">
-=======
-    tools:context="com.sosoham.sosoham.PurchaseActivity">
->>>>>>> de233c1ed0ff9cd2c376f96ce2a668805990b764
 
     <ImageView
         android:layout_width="wrap_content"
