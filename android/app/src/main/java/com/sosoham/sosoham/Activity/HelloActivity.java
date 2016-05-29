@@ -10,6 +10,7 @@ import com.sosoham.sosoham.Vo.HopeVo;
 import com.sosoham.sosoham.sosodb.FaceBook;
 import com.sosoham.sosoham.sosodb.SOSODB;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,19 +27,8 @@ public class HelloActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello);
         flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
-      //  writebtn=(android.support.design.widget.FloatingActionButton) findViewById(R.id.actionButton);
-        //fab = (FloatingActionButton) findViewById(R.id.fab);
-
-    /*    fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Click action
-               // Intent intent = new Intent(MainActivity.this, NewMessageActivity.class);
-                //startActivity(intent);
-            }
-        });*/
         SOSODB sosodb = new SOSODB();
-        JSONObject Jobject = new JSONObject( );
+        final JSONObject Jobject = new JSONObject( );
 
         try {
             Jobject.put("my_id", FaceBook.my_id);
@@ -54,17 +44,15 @@ public class HelloActivity extends Activity {
             @Override
             public void onRequestResult(JSONObject jobj) {
                 try {
-
                     Log.d("result", jobj.toString());
-
-                    for(int i=0; i<jobj.length();i++){
-                        if(jobj.getString("hope_id") !=null ||jobj.getString("gift_content") != null) {
-                            uid = jobj.getString("hope_id");
-                            ucontent = jobj.getString("gift_content");
-                            alist.add(new HopeVo(uid, "a", "a", "a", "a", "a", "a", "쏀치한 오늘 ㅠㅠ", ucontent));
-                        }
+                    JSONArray hope_list = jobj.getJSONArray("hope_list");
+                    for(int i=0; i<hope_list.length();i++){
+                            JSONObject hope = hope_list.getJSONObject(i);
+                            uid = Integer.toString(hope.getInt("hope_id"));
+                            ucontent = hope.getString("gift_content");
+                            alist.add(new HopeVo(uid, "", "", "", "", "", "", "쏀치한 오늘 ㅠㅠ", ucontent));
                     }
-
+                    adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -72,9 +60,8 @@ public class HelloActivity extends Activity {
         });
 
         adapter = new MyCustomListView(this,alist);
-        //writebtn.OnClickListener(
         flingContainer.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
@@ -85,11 +72,6 @@ public class HelloActivity extends Activity {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
-                //flingContainer.focusSearch(View.FOCUS_LEFT);
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
-
 
             }
 

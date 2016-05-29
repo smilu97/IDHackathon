@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.sosoham.sosoham.ContentSubmitActivity"
     android:background="@drawable/main_soso_07">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/submit_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="X"
+            android:textColor="#ffffff"
+            android:gravity="left"/>
+        <Button
+            android:id="@+id/submitSubmitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="저장"
+            android:textColor="#ffffff"
+            android:gravity="right"/>
 
+    </LinearLayout>
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/submitTitleText"
-        android:textSize="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:text="title" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
         android:id="@+id/submitContentText"
-        android:text="content"
-        android:textSize="25dp"
+        android:hint="소소한 바램을 자유롭게 적어보세요."
+        android:textSize="20sp"
+        android:scrollHorizontally="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="48dp"
-        android:layout_alignEnd="@+id/submitTitleText" />
+        />
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/submitSubmitButton"
-        android:src="@drawable/writing_btn_50"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/submitContentText" />
 
-</RelativeLayout>
+</LinearLayout>
