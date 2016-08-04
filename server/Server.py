@@ -105,7 +105,9 @@ def method():
         if mth == 'give_action':
             cur = conn.cursor()
             cur.execute('SELECT hope_whose_fb_id FROM HOPE where hope_uq_id like %s' % content['hope_id'])
-            toId = cur.fetchall()[0]
+            toId = cur.fetchall()[0][0]
+            print toId
+            print "shit!!"
             ts = time.time()
             st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d:%H:%M:%S')
             cur.execute('INSERT INTO ACTION (action_type, action_from_fb_id, action_to_fb_id, action_hope_id, action_time) VALUES (?,?,?,?,?)', \
